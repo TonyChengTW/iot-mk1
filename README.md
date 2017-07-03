@@ -43,7 +43,9 @@ In order to bring new features to users over time, the IoT-Mark1 API supports ve
 curl -i -X POST -H "Content-Type: application/json" -d @iot-mk1-data.json http://127.0.0.1:7878/v1/iot-mk1
 ```
 
-iot-mk1-data.json:
+
+
+iot-mk1-data.json:*
 
 ```
 {
@@ -53,6 +55,8 @@ iot-mk1-data.json:
     "value": 40
 }
 ```
+
+
 
 ##### Responds Header and Body:
 
@@ -78,7 +82,7 @@ Date: Mon, 03 Jul 2017 09:43:34 GMT
 
 ## License
 
-Apache 2.0
+Apache License 2.0
 
 
 
