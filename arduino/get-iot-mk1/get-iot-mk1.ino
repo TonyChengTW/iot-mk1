@@ -8,7 +8,7 @@
 #define SENSOR_MQ135_APIN 2
 #define WIFI_RX_DPIN      12
 #define WIFI_TX_DPIN      13
-#define WIFI_POST_INTERVAL 60000
+#define WIFI_POST_INTERVAL 5000
 #define SERIAL_BAUD       115200
 
 //*-- IoT Information
@@ -80,26 +80,32 @@ void SentOnCloud( int F1, int F2, int F3, int F4, int F5 )
         Serial.print( "RECEIVED: Error\nExit1" );
         return;
     }
-    cmd = GET + "&field1=" + F1 + "&field2=" + F2 + "&field3=" + F3 + "&field4=" + F4 + "&field5=" + F5 + "\r\n";
+    cmd = GET + "&field1=" + F1 + "&field2=" + F2 + "&field3=" + F3 + "&field4=" + F4 + "&field5=" + F5;
     debug.print( "AT+CIPSEND=" );
-    debug.println( cmd.length() );
+    debug.println( String(cmd.length()) );
+    Serial.print("cmd.length= "); //偵錯
+    Serial.println( String(cmd.length()) ); //偵錯
+    Serial.print("debug s1: cipsend? "); //偵錯
+    Serial.println(debug.println( "AT+CIPSEND?" )); //偵錯
+    //delay(2000);
     if(debug.find( ">" ) )
     {
-        Serial.print(">");
+        Serial.print("debug: >");
         Serial.print(cmd);
         debug.print(cmd);
     }
     else
     {
+        Serial.println( "AT+CIPCLOSE" );
         debug.print( "AT+CIPCLOSE" );
     }
     if( debug.find("OK") )
     {
-        Serial.println( "RECEIVED: OK" );
+        Serial.println( "Send: OK" );
     }
     else
     {
-        Serial.println( "RECEIVED: Error\nExit2" );
+        Serial.println( "Send: Error\nExit3" );
     }
 }
 void Wifi_connect()
